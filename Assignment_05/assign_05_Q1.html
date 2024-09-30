@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>assign_05_Q1</title>
+    <style>
+        img {
+            height: 300px;
+            width: 300px;
+        }
+
+        .input1 {
+            width: 100px;
+            background-color: greenyellow;
+            margin-left: 20px;
+        }
+
+        .input2 {
+            width: 100px;
+            background-color: red;
+            margin-left: 20px;
+        }
+
+        .div1 {
+            border: 2px white solid;
+            margin-top: -110px;
+            width: 900px;
+            position: relative;
+        }
+
+        .div2 {
+            height: 200px;
+            background-color: skyblue;
+        }
+    </style>
+
+</head>
+
+<body>
+
+    <section style="background-color: black;">
+
+        <div><img src="car.png" id="mycar"></div>
+
+        <div class="div1"></div>
+        <br>
+
+    </section>
+    <div class="div2">
+        <br>
+        <input class="input1" type="button" value="speedup.." onclick="SpeedUp()">
+        <br>
+        <br>
+        <input class="input2" type="button" value="break" onclick="Break()">
+    </div>
+
+    <script>
+
+        var counter1 = 0;
+        var counter2 = 0;
+        var array = new Array();
+
+        function SpeedUp() {
+            var Q = window.setInterval(F1, 100);
+            array.push(Q);
+
+        }
+        function Break() {
+            for (var i = 0; i < array.length; i++) {
+                var arrDrop = array[i];
+                window.clearInterval(arrDrop);
+            }
+            array = new Array();
+        }
+
+        function F1() {
+            counter1 = counter1 + 10;
+            var refCar = document.getElementById("mycar");
+            if (refCar.style.marginLeft != "850px") {
+
+                refCar.style.marginLeft = counter1 + "px";
+            }
+            else {
+                refCar.style.rotate = "70deg";
+                counter2 = counter2 + 10;
+                refCar.style.marginTop = counter2 + "px";
+
+                if (refCar.style.marginTop != "200px") {
+                    Break();
+                }
+
+            }
+
+        }
+
+    </script>
+
+
+
+</body>
+
+</html>

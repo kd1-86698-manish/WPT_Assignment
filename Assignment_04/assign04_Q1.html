@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <title>assign04_Q1</title>
+    <style>
+        .input1 {
+            background-color: skyblue;
+            box-shadow: 0px 0px 10px grey;
+            border-radius: 20%;
+            border: 1px black solid;
+            
+        }
+    </style>
+</head>
+
+<body>
+
+    <center>
+
+        <table style="  background-color:wheat;height:350px ;width: 350px;border: 6px black double;">
+
+            <tr>
+                <td colspan="2" style="text-align: center;">
+                    <h2>Calculator</h2>
+                    <hr style="border: 1px black dotted;"/>
+                </td>
+            </tr>
+            <tr>
+                <td>Number 1</td>
+                <td><input type="text" id="Num1"></td>
+            </tr>
+            
+            <tr>
+                <td>Number 2</td>
+                <td><input type="text" id="Num2"></td>
+            </tr>
+            <tr>
+                <td>Result </td>
+                <td><input type="text" id="result"></td>
+            </tr>
+            <br>
+            <tr>
+                <td colspan="2">
+                    <input class="input1" type="button" value="Addition" onclick="Calculate(1)">
+                    <input class="input1" type="button" value="Subtraction" onclick="Calculate(2)">
+                    <input class="input1" type="button" value="Multiplication" onclick="Calculate(3)">
+                    <input class="input1" type="button" value="Division" onclick="Calculate(4)">
+                                </td>
+                <!-- <td></td> -->
+            </tr>
+            <br>
+        </table>
+    </center>
+
+    <script>
+        function Calculate(choice) {
+
+            var num1 = parseInt(document.getElementById("Num1").value);
+            var num2 = parseInt(document.getElementById("Num2").value);
+            var result = document.getElementById("result");
+
+            console.log(choice);
+
+            switch (choice) {
+                case 1:
+                    result.value = num1 + num2;
+                    break;
+                case 2:
+                    result.value = num1 - num2;
+                    break;
+                case 3:
+                    result.value = num1 * num2;
+                    break;
+                case 4:
+                    result.value = num1 / num2;
+                    break;
+
+                default:
+                    break;
+            }
+
+        }
+    </script>
+</body>
+
+</html>
