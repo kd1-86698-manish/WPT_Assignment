@@ -2,99 +2,48 @@
 <html>
 
 <head>
-    <title>assign_05_Q1</title>
+    <title>Racing Car</title>
+    <script src="script.js"></script>
+    <link rel="stylesheet" href="style.css">
     <style>
         img {
-            height: 300px;
-            width: 300px;
-        }
-
-        .input1 {
-            width: 100px;
-            background-color: greenyellow;
-            margin-left: 20px;
-        }
-
-        .input2 {
-            width: 100px;
-            background-color: red;
-            margin-left: 20px;
-        }
-
-        .div1 {
-            border: 2px white solid;
-            margin-top: -110px;
-            width: 900px;
-            position: relative;
-        }
-
-        .div2 {
             height: 200px;
-            background-color: skyblue;
+            width: 200px;
+            position: absolute;
+        }
+
+        .highwayRoad {
+            border: 2px solid black;
+            width: 38%;
+            top: 160px;
+            position: absolute;
         }
     </style>
-
 </head>
 
 <body>
+    <div style="background-color: skyblue;">
+        <section>
 
-    <section style="background-color: black;">
+            <img id="myImage" src="car.png" ;>
 
-        <div><img src="car.png" id="mycar"></div>
+            <div class="highwayRoad"></div>
 
-        <div class="div1"></div>
-        <br>
+        </section>
 
-    </section>
-    <div class="div2">
-        <br>
-        <input class="input1" type="button" value="speedup.." onclick="SpeedUp()">
-        <br>
-        <br>
-        <input class="input2" type="button" value="break" onclick="Break()">
+        <section>
+
+            X axis : <input type="text" id="x-axis" style="margin-top: 200px;">
+            <br><br>
+
+            Y axis : <input type="text" id="y-axis">
+            <br><br>
+
+            <input type="button" value="Start" onclick="Start()" />
+            <input type="button" value="Stop" onclick="Stop()" />
+            <br />
+        </section>
     </div>
-
-    <script>
-
-        var counter1 = 0;
-        var counter2 = 0;
-        var array = new Array();
-
-        function SpeedUp() {
-            var Q = window.setInterval(F1, 100);
-            array.push(Q);
-
-        }
-        function Break() {
-            for (var i = 0; i < array.length; i++) {
-                var arrDrop = array[i];
-                window.clearInterval(arrDrop);
-            }
-            array = new Array();
-        }
-
-        function F1() {
-            counter1 = counter1 + 10;
-            var refCar = document.getElementById("mycar");
-            if (refCar.style.marginLeft != "850px") {
-
-                refCar.style.marginLeft = counter1 + "px";
-            }
-            else {
-                refCar.style.rotate = "70deg";
-                counter2 = counter2 + 10;
-                refCar.style.marginTop = counter2 + "px";
-
-                if (refCar.style.marginTop != "200px") {
-                    Break();
-                }
-
-            }
-
-        }
-
-    </script>
-
 
 
 </body>
