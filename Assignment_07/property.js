@@ -1,0 +1,57 @@
+const express = require('express')
+const db = require('./db')
+const utils = require('./utils')
+
+const router = express.Router()
+
+
+//post property
+router.post('/', (request, response) => {
+    const {
+        categoryId,
+        title, details, address, contactNo, ownerName,
+        isLakeView, isTV, isAC, isWifi, isMiniBar,
+        isBreakfast, isParking, guests, bedrooms,
+        beds, bathrooms, rent
+    } = request.body
+
+    const query = `insert into property(categoryId,
+        title, details, address, contactNo, ownerName,
+        isLakeView, isTV, isAC, isWifi, isMiniBar,
+        isBreakfast, isParking, guests, bedrooms,
+        beds, bathrooms, rent) values (?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?);`
+    db.pool.execute(
+        query,
+        [
+            categoryId,
+            title, details, address, contactNo, ownerName,
+            isLakeView, isTV, isAC, isWifi, isMiniBar,
+            isBreakfast, isParking, guests, bedrooms,
+            beds, bathrooms, rent
+        ],
+        (error, result) => {
+            response.send(utils.createResult(error, result))
+        }
+    )
+})
+
+//get property 
+router.get('/', (request, response) => {
+
+    const statement = `select id,title,details,rent,profileImage from property;`
+    db.pool.query(statement, (error, properties) => {
+        response.send(utils.createResult(error, properties))
+    })
+})
+
+//get specific  property 
+router.get('/details/:id', (request, response) => {
+    const { id } = request.params
+    const statement = `select* from property where id = ?;`
+    db.pool.query(statement,
+        [id],
+        (error, properties) => {
+            response.send(utils.createResult(error, properties[0]))
+        })
+})
+module.exports = router
